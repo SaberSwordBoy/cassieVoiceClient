@@ -1,11 +1,7 @@
 import requests
-<<<<<<< HEAD
 from scripts import tts
-=======
 from rich import print
 import configparser
-import os 
->>>>>>> 6a7d9d488b3ccb3d2705511477f78cf3091fedb8
 
 config = configparser.ConfigParser()
 config.read('config/config.ini')
