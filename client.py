@@ -1,4 +1,5 @@
 import requests
+from scripts import tts
 
 DEBUG = True # Print out all data instead of just response. 
 
@@ -44,6 +45,10 @@ while True:
 
     if DEBUG:
         print(resp_data)
+        tts.speak_text(resp_data['response'])
+
     else:
         print("You: " + input_text)
         print("Cassie: " + resp_data['response'])
+        tts.speak_text(resp_data['response'])
+
