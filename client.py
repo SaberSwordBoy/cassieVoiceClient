@@ -8,6 +8,8 @@ config = configparser.ConfigParser()
 config.read('config/config.ini')
 
 DEBUG = config.getboolean("Client", "debug") # Print additional data if DEBUG = True
+voice_input = config.getboolean("Client", 'voiceInput')
+voice_output = config.getboolean("Client", 'voiceOutput')
 
 # Urls
 BASE_URL = f"http://{config.get('Client', 'server_ip')}/"
@@ -16,6 +18,8 @@ GETRESP_URL = 'getresponse'
 
 if DEBUG:
     print(BASE_URL, PORT, GETRESP_URL)
+    print(voice_output, voice_input)
+    print()
 
 # Banner
 print("-"*50)
@@ -83,5 +87,7 @@ while True:
     else:
         print("You: " + input_text)
         print("Cassie: " + resp_data['response'])
-        tts.speak_text(resp_data['response'])
+        
+        if voice_output:
+            tts.speak_text(resp_data['response'])
 

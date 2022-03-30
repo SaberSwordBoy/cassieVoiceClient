@@ -16,7 +16,16 @@ def listen():
             print("Time over, thank you")
     
             try:
-                # using google speech recognition
-                print("Text: "+recognizer.recognize_google(audio_text))
+                if processing_method == 'google':
+                    query = recognizer.recognize_google(audio_text)
+                elif processing_method == 'idm':
+                    query = recognizer.recognize_ibm(audio_text)
+                elif processing_method == 'google_cloud':
+                    query = recognizer.recognize_google_cloud(audio_text)
+                elif processing_method == 'sphinx':
+                    query = recognizer.recognize_google(audio_text)
+                elif processing_method == 'houndify':
+                    query = recognizer.recognize_houndify(audio_text)
             except:
-                print("Sorry, could not understand. ")
+                query = "Sorry, couldn't understand that. "
+    return query
